@@ -22,7 +22,7 @@ export default function EmptyState({ onCreateNote }: EmptyStateProps) {
       <h3 className="text-xl font-semibold text-gray-800 mb-2">No Notes Yet</h3>
       
       <p className="text-gray-600 mb-8 max-w-md">
-        You haven't created any notes yet. Start by creating your first note to keep track of your ideas, tasks, or memories.
+        You haven&apos;t created any notes yet. Start by creating your first note to keep track of your ideas, tasks, or memories.
       </p>
       
       <motion.button

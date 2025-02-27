@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 export default function SignUpPage() {
@@ -27,7 +26,7 @@ export default function SignUpPage() {
         }
         
         const supabase = createClient()
-        const { data, error } = await supabase.auth.signUp({
+        const { error } = await supabase.auth.signUp({
             email,
             password,
         })

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-type Note = {
-  id?: string;
-  title: string;
-  content: string;
-};
+// type Note = {
+//   id?: string;
+//   title: string;
+//   content: string;
+// };
 
 interface NoteFormProps {
   onSubmit: (data: { title: string; content: string; id?: string }) => void;

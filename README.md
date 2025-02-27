@@ -49,21 +49,6 @@ yarn dev
 
 4. Open http://localhost:3000 in your browser.
 
-### Project Structure
-/
-├── app/                    # Next.js app router pages
-│   ├── (auth)/             # Authentication routes
-│   │   ├── sign-in/
-│   │   └── sign-up/
-│   ├── notes/              # Notes management
-│   └── page.tsx            # Landing page
-├── components/             # Reusable React components
-│   ├── layout/             # Layout components like navbar, footer
-│   └── notes/              # Notes-related components
-├── public/                 # Static assets
-│   └── images/
-└── utils/                  # Utility functions
-
 ### License
 - This project is licensed under the MIT License - see the LICENSE file for details.
 

@@ -8,8 +8,8 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 
 export default function Navbar() {
-  const [user, setUser] = useState<any>(null);
-  const [userProfile, setUserProfile] = useState<any>(null);
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
+  const [userProfile, setUserProfile] = useState<{ full_name?: string; avatar_url?: string } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

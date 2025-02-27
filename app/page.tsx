@@ -4,15 +4,15 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/client";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Footer from '@/components/layout/Footer';
 
 export default function Home() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<{ id: string } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const supabase = createClient();
-  const router = useRouter();
+  // const router = useRouter();
 
   useEffect(() => {
     async function getUser() {
@@ -38,6 +38,11 @@ export default function Home() {
     hidden: { y: 20, opacity: 0 },
     show: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100 } }
   };
+  if (isLoading){
+    return(
+      <div className="bg-white min-h-screen"></div>
+    )
+  }
 
   return (
     <div className="bg-white min-h-screen">
@@ -198,7 +203,7 @@ export default function Home() {
               A great experience on any device
             </h2>
             <p className="mt-4 text-xl text-gray-500">
-              NoteSync's clean interface makes taking notes a pleasure, whether you're on desktop or mobile.
+              NoteSync&apos;s clean interface makes taking notes a pleasure, whether you&apos;re on desktop or mobile.
             </p>
           </motion.div>
 

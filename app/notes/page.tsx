@@ -16,9 +16,9 @@ type Note = {
 };
 
 export default function NotesPage() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<{ id: string } | null>(null);
   const [notes, setNotes] = useState<Note[]>([]);
-  const [newNote, setNewNote] = useState({ title: "", content: "" });
+  // const [newNote, setNewNote] = useState({ title: "", content: "" });
   const [editingNote, setEditingNote] = useState<Note | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -44,6 +44,7 @@ export default function NotesPage() {
   }, [user]);
 
   async function fetchNotes() {
+    if(!user) return;
     setIsLoading(true);
     try {
       const { data, error } = await supabase
@@ -79,7 +80,6 @@ export default function NotesPage() {
       if (error) throw error;
       
       setNotes([data[0], ...notes]);
-      setNewNote({ title: "", content: "" });
       setIsFormOpen(false);
     } catch (error) {
       console.error("Error adding note:", error);

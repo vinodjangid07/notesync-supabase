@@ -11,8 +11,15 @@ interface ProfileFormProps {
 }
 
 export default function ProfileForm({ userId }: ProfileFormProps) {
-  const [user, setUser] = useState<any>(null);
-  const [profile, setProfile] = useState<any>(null);
+  const [user, setUser] = useState<{
+    id: string;
+    email?: string;
+    created_at?: string;
+  } | null>(null);
+  // const [profile, setProfile] = useState<{
+  //   full_name?: string;
+  //   avatar_url?: string;
+  // } | null>(null);
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [fullName, setFullName] = useState("");
@@ -68,7 +75,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
       }
 
       if (data) {
-        setProfile(data);
+        // setProfile(data);
         setFullName(data.full_name || "");
         setAvatarUrl(data.avatar_url);
 
@@ -111,31 +118,31 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
   function isValidImageFile(file: File) {
     // List of allowed MIME types for images
     const validImageTypes = [
-      'image/jpeg',
-      'image/png',
-      'image/gif',
-      'image/webp',
-      'image/svg+xml',
-      'image/bmp'
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+      "image/webp",
+      "image/svg+xml",
+      "image/bmp",
     ];
-    
+
     // Check file type
     if (!validImageTypes.includes(file.type)) {
       return {
         valid: false,
-        error: "File must be a valid image (JPEG, PNG, GIF, etc.)"
+        error: "File must be a valid image (JPEG, PNG, GIF, etc.)",
       };
     }
-    
+
     // Check file size (limit to 5MB)
     const maxSizeInBytes = 5 * 1024 * 1024; // 5MB
     if (file.size > maxSizeInBytes) {
       return {
         valid: false,
-        error: "Image size must be less than 5MB"
+        error: "Image size must be less than 5MB",
       };
     }
-    
+
     return { valid: true, error: null };
   }
 
@@ -145,61 +152,65 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
       setAvatarPreview(null);
       return;
     }
-  
+
     const file = e.target.files[0];
-    
+
     const validation = isValidImageFile(file);
     if (!validation.valid) {
       setError(validation.error);
-      e.target.value = '';
+      e.target.value = "";
       return;
     }
-    
+
     setError(null);
     setAvatarFile(file);
 
     // Create preview
     const reader = new FileReader();
-  reader.onload = (e) => {
-    setAvatarPreview(e.target?.result as string);
-  };
-  reader.readAsDataURL(file);
-}
-
-async function uploadAvatar(userId: string, file: File) {
-  try {
-    const validation = isValidImageFile(file);
-    if (!validation.valid) {
-      throw new Error(validation.error || "Invalid file");
-    }
-    
-    const fileExt = file.name.split(".").pop();
-    const fileName = `${Date.now().toString()}.${fileExt}`;
-    const filePath = `avatars/${userId}/${fileName}`;
-    const { data: uploadData, error: uploadError } = await supabase.storage
-      .from("profile-images")
-      .upload(filePath, file, {
-        cacheControl: "3600",
-        upsert: true,
-      });
-
-    if (uploadError) {
-      throw uploadError;
-    }
-
-    const { data } = supabase.storage
-      .from("profile-images")
-      .getPublicUrl(filePath);
-
-    return data.publicUrl;
-  } catch (error) {
-    console.error("Error in uploadAvatar:", error);
-    throw error;
+    reader.onload = (e) => {
+      setAvatarPreview(e.target?.result as string);
+    };
+    reader.readAsDataURL(file);
   }
-}
+
+  async function uploadAvatar(userId: string, file: File) {
+    try {
+      const validation = isValidImageFile(file);
+      if (!validation.valid) {
+        throw new Error(validation.error || "Invalid file");
+      }
+
+      const fileExt = file.name.split(".").pop();
+      const fileName = `${Date.now().toString()}.${fileExt}`;
+      const filePath = `avatars/${userId}/${fileName}`;
+      const { error: uploadError } = await supabase.storage
+        .from("profile-images")
+        .upload(filePath, file, {
+          cacheControl: "3600",
+          upsert: true,
+        });
+
+      if (uploadError) {
+        throw uploadError;
+      }
+
+      const { data } = supabase.storage
+        .from("profile-images")
+        .getPublicUrl(filePath);
+
+      return data.publicUrl;
+    } catch (error) {
+      console.error("Error in uploadAvatar:", error);
+      throw error;
+    }
+  }
 
   async function handleProfileUpdate(e: React.FormEvent) {
     e.preventDefault();
+    if (!user) {
+      setError("User session not found. Please sign in again.");
+      return;
+    }
     setUpdating(true);
     setError(null);
     setSuccessMessage(null);
@@ -217,7 +228,7 @@ async function uploadAvatar(userId: string, file: File) {
         updated_at: new Date().toISOString(),
       };
 
-      const { data: existingProfile, error: checkError } = await supabase
+      const { error: checkError } = await supabase
         .from("profiles")
         .select("id")
         .eq("id", user.id)
@@ -258,8 +269,18 @@ async function uploadAvatar(userId: string, file: File) {
       setAvatarPreview(null);
 
       fetchProfile(user.id);
-    } catch (error: any) {
-      setError(error.message || "Error updating profile");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else if (
+        typeof error === "object" &&
+        error !== null &&
+        "message" in error
+      ) {
+        setError((error as { message: string }).message);
+      } else {
+        setError("Error updating profile");
+      }
     } finally {
       setUpdating(false);
     }
