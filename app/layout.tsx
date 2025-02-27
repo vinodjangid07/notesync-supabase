@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "NoteSync",
     images: [
       {
-        url: "https://notesync-site.netlify.app/images/image.png",
+        url: "https://notesync-site.netlify.app/images/ogimage.png",
         width: 1200,
         height: 630,
         alt: "NoteSync - Capture Your Ideas, Anytime, Anywhere",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "NoteSync - Cloud-Based Note-Taking App",
     description: "Capture your ideas effortlessly with NoteSync. Secure, fast, and accessible anytime, anywhere.",
-    images: ["https://notesync-site.netlify.app/images/image.png"],
+    images: ["https://notesync-site.netlify.app/images/ogimage.png"],
     creator: "@Vinod_Jangid07",
   },
 };
