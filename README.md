@@ -2,7 +2,7 @@
 
 A modern 📝 note-taking application built with Next.js and Supabase.
 
-![NoteSync Preview](public/images/preview.png)
+![NoteSync Preview](public/images/readmePreview.png)
 
 ## 🚀 Features
 
