@@ -264,7 +264,7 @@ export default function Home() {
                 href={user ? "/notes" : "/sign-up"}
                 className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-purple-700 bg-white hover:bg-gray-50 shadow-md"
               >
-                {user ? "Go to my notes" : "Get started for free"}
+                {user ? "Go to notes" : "Get started for free"}
               </Link>
             </motion.div>
           </motion.div>

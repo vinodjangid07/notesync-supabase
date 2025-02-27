@@ -18,7 +18,6 @@ type Note = {
 export default function NotesPage() {
   const [user, setUser] = useState<{ id: string } | null>(null);
   const [notes, setNotes] = useState<Note[]>([]);
-  // const [newNote, setNewNote] = useState({ title: "", content: "" });
   const [editingNote, setEditingNote] = useState<Note | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -205,9 +204,6 @@ export default function NotesPage() {
                   <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
                   <div className="h-4 bg-gray-200 rounded w-5/6 mb-2"></div>
                   <div className="h-4 bg-gray-200 rounded w-4/6"></div>
-                  <div className="absolute bottom-4 left-5">
-                    <div className="h-4 w-24 bg-gray-200 rounded"></div>
-                  </div>
                 </div>
               </div>
             ))}
