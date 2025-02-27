@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+*::selection {
+  background-color: #9233ea18;
+}
+
+*::-moz-selection {
+  background: #9233ea18;
+}
+
+* {
+  -webkit-user-select: #9233ea18;
+  -moz-user-select: #9233ea18;
+  -ms-user-select: #9233ea18;
+  user-select: #9233ea18;
+
+}
+
+* {
+  -webkit-tap-highlight-color: #9233ea18;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
