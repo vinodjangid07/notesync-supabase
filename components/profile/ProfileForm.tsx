@@ -16,10 +16,6 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
     email?: string;
     created_at?: string;
   } | null>(null);
-  // const [profile, setProfile] = useState<{
-  //   full_name?: string;
-  //   avatar_url?: string;
-  // } | null>(null);
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [fullName, setFullName] = useState("");
@@ -288,18 +284,18 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="p-8 rounded-xl bg-transparent flex items-center justify-center">
           <div className="flex flex-col items-center space-y-4 justify-center">
             <div className="relative w-14 h-14">
               <motion.div
-                className="absolute inset-0 border-4 border-purple-600 border-opacity-30 rounded-full"
+                className="absolute inset-0 border-4 border-primary border-opacity-30 rounded-full"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
               />
               <motion.div
-                className="absolute inset-0 border-4 border-t-purple-600 rounded-full"
+                className="absolute inset-0 border-4 border-t-primary rounded-full"
                 animate={{
                   rotate: 360,
                 }}
@@ -317,7 +313,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -325,7 +321,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
         className="max-w-4xl mx-auto"
       >
         {/* Profile Header */}
-        <div className="bg-white rounded-t-xl shadow-lg overflow-hidden">
+        <div className="bg-background border border-border-subtle rounded-t-xl shadow-xl backdrop-blur-sm overflow-hidden">
           <div className="p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6">
             {/* Profile Avatar */}
             <motion.div
@@ -334,7 +330,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="h-32 w-32 rounded-full border-4 border-gray-50 shadow-lg overflow-hidden">
+              <div className="h-32 w-32 rounded-full border-4 border-border-accent shadow-xl overflow-hidden">
                 {avatarPreview || avatarUrl ? (
                   <Image
                     src={avatarPreview || avatarUrl || ""}
@@ -346,7 +342,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                     priority
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-4xl font-bold text-white">
+                  <div className="w-full h-full bg-gradient-to-br from-primary/80 to-primary flex items-center justify-center text-4xl font-bold text-white">
                     {user?.email?.charAt(0).toUpperCase()}
                   </div>
                 )}
@@ -356,7 +352,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
             {/* User Info */}
             <div className="flex-1 text-center sm:text-left">
               <motion.h1
-                className="text-3xl font-bold text-gray-800"
+                className="text-3xl font-bold text-foreground"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -364,7 +360,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                 {fullName || "Welcome"}
               </motion.h1>
               <motion.p
-                className="text-gray-500 mt-2"
+                className="text-foreground/70 mt-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
@@ -372,7 +368,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                 {user?.email}
               </motion.p>
               <motion.p
-                className="text-sm text-gray-400 mt-1"
+                className="text-sm text-foreground/50 mt-1"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
@@ -385,13 +381,13 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-gray-200 bg-white">
+        <div className="flex border-b border-border-subtle bg-background backdrop-blur-sm">
           <button
             onClick={() => setActiveTab("profile")}
             className={`flex-1 py-4 px-1 text-center text-sm font-medium ${
               activeTab === "profile"
-                ? "text-purple-600 border-b-2 border-purple-600"
-                : "text-gray-500 hover:text-gray-700"
+                ? "text-primary border-b-2 border-primary"
+                : "text-foreground/60 hover:text-foreground/80"
             } transition-colors duration-200`}
           >
             Profile Information
@@ -400,8 +396,8 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
             onClick={() => setActiveTab("settings")}
             className={`flex-1 py-4 px-1 text-center text-sm font-medium ${
               activeTab === "settings"
-                ? "text-purple-600 border-b-2 border-purple-600"
-                : "text-gray-500 hover:text-gray-700"
+                ? "text-primary border-b-2 border-primary"
+                : "text-foreground/60 hover:text-foreground/80"
             } transition-colors duration-200`}
           >
             Account Settings
@@ -409,7 +405,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
         </div>
 
         {/* Tab Content */}
-        <div className="p-6 sm:p-8 bg-white rounded-b-xl shadow-lg">
+        <div className="p-6 sm:p-8 bg-background border border-border-subtle rounded-b-xl shadow-xl backdrop-blur-sm">
           <AnimatePresence mode="wait">
             {activeTab === "profile" ? (
               <motion.div
@@ -420,10 +416,10 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                 transition={{ duration: 0.3 }}
               >
                 <div className="mb-6">
-                  <h2 className="text-2xl font-semibold text-gray-800 mb-1">
+                  <h2 className="text-2xl font-semibold text-foreground mb-1">
                     Your Profile
                   </h2>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-foreground/60">
                     Update your personal information
                   </p>
                 </div>
@@ -435,12 +431,12 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="bg-red-50 border-l-4 border-red-500 p-4 rounded"
+                        className="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 dark:border-red-400 p-4 rounded-lg"
                       >
                         <div className="flex">
                           <div className="flex-shrink-0">
                             <svg
-                              className="h-5 w-5 text-red-400"
+                              className="h-5 w-5 text-red-600 dark:text-red-400"
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 20 20"
                               fill="currentColor"
@@ -453,7 +449,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                             </svg>
                           </div>
                           <div className="ml-3">
-                            <p className="text-sm text-red-700">{error}</p>
+                            <p className="text-sm text-red-700 dark:text-red-400">{error}</p>
                           </div>
                         </div>
                       </motion.div>
@@ -464,12 +460,12 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="bg-green-50 border-l-4 border-green-500 p-4 rounded"
+                        className="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 dark:border-green-400 p-4 rounded-lg"
                       >
                         <div className="flex">
                           <div className="flex-shrink-0">
                             <svg
-                              className="h-5 w-5 text-green-400"
+                              className="h-5 w-5 text-green-600 dark:text-green-400"
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 20 20"
                               fill="currentColor"
@@ -482,7 +478,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                             </svg>
                           </div>
                           <div className="ml-3">
-                            <p className="text-sm text-green-700">
+                            <p className="text-sm text-green-700 dark:text-green-400">
                               {successMessage}
                             </p>
                           </div>
@@ -494,7 +490,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                   <div>
                     <label
                       htmlFor="fullName"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-foreground mb-1"
                     >
                       Full Name
                     </label>
@@ -503,7 +499,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                       id="fullName"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      className="shadow-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-purple-500 focus:border-purple-500 block w-full sm:text-sm border border-gray-300 rounded-lg p-3 transition duration-150"
+                      className="shadow-sm bg-background border-border focus:bg-background focus:ring-2 focus:ring-primary focus:border-primary block w-full sm:text-sm border rounded-lg p-3 transition duration-200 text-foreground placeholder-foreground/50"
                       placeholder="Enter your full name"
                     />
                   </div>
@@ -511,7 +507,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-foreground mb-1"
                     >
                       Email Address
                     </label>
@@ -520,9 +516,9 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                       id="email"
                       value={user?.email || ""}
                       disabled
-                      className="bg-gray-50 block w-full sm:text-sm border border-gray-300 rounded-lg p-3 text-gray-500"
+                      className="bg-background/50 block w-full sm:text-sm border border-border rounded-lg p-3 text-foreground/60 cursor-not-allowed"
                     />
-                    <p className="mt-1 text-xs text-gray-500">
+                    <p className="mt-1 text-xs text-foreground/50">
                       Email address cannot be changed
                     </p>
                   </div>
@@ -530,7 +526,7 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                   <div>
                     <label
                       htmlFor="avatar"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-foreground mb-1"
                     >
                       Profile Picture
                     </label>
@@ -545,12 +541,12 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                         />
                         <label
                           htmlFor="avatar"
-                          className="cursor-pointer py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                          className="cursor-pointer py-2 px-3 border border-border rounded-md shadow-sm text-sm font-medium text-foreground bg-background hover:bg-background/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-200"
                         >
                           Choose Image
                         </label>
                         {avatarFile && (
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-foreground/60 ml-3">
                             {avatarFile.name}
                           </p>
                         )}
@@ -565,10 +561,10 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                         disabled={updating}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className={`inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 ${
+                        className={`inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-200 ${
                           updating
-                            ? "bg-purple-400"
-                            : "bg-purple-600 hover:bg-purple-700"
+                            ? "bg-primary/60 cursor-not-allowed"
+                            : "bg-primary hover:bg-primary/90"
                         }`}
                       >
                         {updating ? (
@@ -612,16 +608,16 @@ export default function ProfileForm({ userId }: ProfileFormProps) {
                 transition={{ duration: 0.3 }}
               >
                 <div className="mb-6">
-                  <h2 className="text-2xl font-semibold text-gray-800 mb-1">
+                  <h2 className="text-2xl font-semibold text-foreground mb-1">
                     Account Settings
                   </h2>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-foreground/60">
                     Manage your account preferences
                   </p>
                 </div>
 
-                <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
-                  <p className="text-center text-gray-500">
+                <div className="p-4 bg-background/50 rounded-lg border border-border">
+                  <p className="text-center text-foreground/60">
                     Account settings will be available soon
                   </p>
                 </div>

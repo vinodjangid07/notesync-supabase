@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
+import {ModeToggle} from "../theme/ModeToggle"
 
 export default function Navbar() {
   const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
@@ -145,7 +146,7 @@ export default function Navbar() {
   const getUserAvatar = () => {
     if (userProfile?.avatar_url) {
       return (
-        <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-white shadow-sm">
+        <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-border-accent shadow-sm">
           <Image
             src={userProfile.avatar_url}
             alt="User avatar"
@@ -159,7 +160,7 @@ export default function Navbar() {
     }
     return (
       <div className="w-9 h-9 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-sm">
-        <span className="font-medium text-white text-sm">
+        <span className="font-medium text-foreground text-sm">
           {user?.email?.charAt(0).toUpperCase()}
         </span>
       </div>
@@ -167,7 +168,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white backdrop-blur-lg bg-opacity-80">
+    <nav className="sticky top-0 z-50 bg-background backdrop-blur-lg bg-opacity-80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <motion.div
@@ -182,7 +183,7 @@ export default function Navbar() {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-purple-600"
+                  className="h-6 w-6 text-primary-600"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -211,34 +212,36 @@ export default function Navbar() {
                 <div className="flex items-center space-x-6">
                   <Link
                     href="/"
-                    className="text-gray-600 hover:text-purple-600 transition-colors font-medium"
+                    className="hover:text-primary-600 transition-colors font-medium"
                   >
                     Home
                   </Link>
                   <Link
                     href="/notes"
-                    className="text-gray-600 hover:text-purple-600 transition-colors font-medium"
+                    className="hover:text-primary-600 transition-colors font-medium"
                   >
                     Notes
                   </Link>
                 </div>
-
+                {/* ModeToggle for PC menu */}
+                <div className="ml-4">
+                  <ModeToggle />
+                </div>
                 {/* User dropdown menu */}
                 <div className="relative" ref={dropdownRef}>
                   <motion.button
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="flex items-center space-x-2 py-1 px-1 rounded-full bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-100 focus:outline-none"
+                    className="flex items-center space-x-2 py-1 px-1 rounded-full bg-background transition-colors border border-border focus:outline-none"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     {getUserAvatar()}
-
-                    <span className="font-medium text-gray-700">
+                    <span className="font-base">
                       {getDisplayName()}
                     </span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className={`h-4 w-6 text-gray-500 transition-transform duration-200 ${
+                      className={`h-4 w-6 transition-transform duration-200 ${
                         isDropdownOpen ? "transform rotate-180" : ""
                       }`}
                       viewBox="0 0 20 20"
@@ -251,7 +254,6 @@ export default function Navbar() {
                       />
                     </svg>
                   </motion.button>
-
                   <AnimatePresence>
                     {isDropdownOpen && (
                       <motion.div
@@ -259,23 +261,22 @@ export default function Navbar() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute right-0 mt-2 w-64 bg-white border border-gray-100 rounded-xl shadow-xl py-2 z-10"
+                        className="absolute right-0 mt-2 w-64 bg-background border border-border rounded-xl shadow-xl py-2 z-10"
                       >
-                        <div className="px-4 py-3 border-b border-gray-100">
-                          <p className="text-sm text-gray-500">Signed in as</p>
-                          <p className="text-sm font-medium text-gray-900 truncate">
+                        <div className="px-4 py-3 border-b border-border-subtle">
+                          <p className="text-sm">Signed in as</p>
+                          <p className="text-sm font-medium text-gray-700 dark:text-gray-300 truncate">
                             {user.email}
                           </p>
                         </div>
-
                         <Link
                           href={`/profile/${user.id}`}
-                          className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600"
+                          className="flex items-center px-4 py-2 text-sm hover:bg-primary-600 hover:text-white"
                           onClick={() => setIsDropdownOpen(false)}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5 mr-3 text-gray-400"
+                            className="h-5 w-5 mr-3"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -291,11 +292,11 @@ export default function Navbar() {
                         </Link>
                         <button
                           onClick={handleLogout}
-                          className="flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600"
+                          className="flex w-full items-center px-4 py-2 text-sm hover:bg-red-700 hover:text-white"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5 mr-3 text-gray-400"
+                            className="h-5 w-5 mr-3"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -322,7 +323,7 @@ export default function Navbar() {
                 >
                   <Link
                     href="/sign-in"
-                    className="text-gray-900 hover:text-purple-600 font-medium px-4 py-2"
+                    className="hover:text-primary-200 font-base px-4 py-2"
                   >
                     Sign In
                   </Link>
@@ -333,11 +334,14 @@ export default function Navbar() {
                 >
                   <Link
                     href="/sign-up"
-                    className="bg-gradient-to-r from-purple-600 to-purple-600 text-white px-5 py-2 rounded-lg font-medium hover:shadow-md transition-all duration-200"
+                    className="bg-gradient-to-r from-primary-600 to-primary-500 text-white px-5 py-2 rounded-lg font-medium hover:shadow-md transition-all duration-200 font-base"
                   >
                     Sign Up
                   </Link>
                 </motion.div>
+                <div className="ml-4">
+                  <ModeToggle />
+                </div>
               </div>
             )}
           </div>
@@ -346,7 +350,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-600 p-2 rounded-md focus:outline-none"
+              className="p-2 rounded-md focus:outline-none"
             >
               {isMobileMenuOpen ? (
                 <svg
@@ -393,7 +397,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden min-h-screen"
+            className="fixed inset-0 bg-background bg-opacity-50 z-40 md:hidden min-h-screen"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <motion.div
@@ -401,14 +405,14 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="absolute right-0 top-0 h-full w-full max-w-sm bg-white shadow-xl"
+              className="absolute right-0 top-0 h-full w-full bg-background shadow-xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex justify-between items-center p-4 border-b border-gray-100">
-                <h2 className="text-lg font-semibold text-gray-800">Menu</h2>
+              <div className="flex justify-between items-center p-4 border-b border-border">
+                <h2 className="text-lg font-medium">Menu</h2>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 rounded-full hover:bg-gray-100"
+                  className="p-2 rounded-full hover:bg-foreground"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -428,39 +432,42 @@ export default function Navbar() {
               </div>
 
               <div className="px-4 pt-4 pb-6 space-y-5 overflow-y-auto h-[calc(100%-64px)]">
+                {/* ModeToggle for mobile menu */}
+                <div className="flex justify-center py-2">
+                  <ModeToggle />
+                </div>
                 {isLoading ? (
                   <div className="flex justify-center">
                     <motion.div
                       animate={{ opacity: [0.5, 1, 0.5] }}
                       transition={{ repeat: Infinity, duration: 1.5 }}
-                      className="h-10 w-24 bg-gray-200 rounded"
+                      className="h-10 w-24 bg-gray-200 dark:bg-gray-800 rounded"
                     />
                   </div>
                 ) : user ? (
                   <>
                     {/* User Info */}
-                    <div className="flex items-center space-x-3 px-4 py-4 bg-gray-50 rounded-lg">
+                    <div className="flex items-center space-x-3 px-4 py-4 bg-background rounded-lg border border-border">
                       {getUserAvatar()}
                       <div className="flex-1 min-w-0">
-                        <p className="font-medium text-gray-800 truncate">
+                        <p className="font-medium truncate">
                           {getDisplayName()}
                         </p>
-                        <p className="text-xs text-gray-500 truncate">
+                        <p className="text-xs text-gray-700 dark:text-gray-300 truncate">
                           {user.email}
                         </p>
                       </div>
                     </div>
-
                     {/* Navigation Links */}
                     <div className="space-y-1 py-2">
                       <Link
                         href="/"
-                        className="flex items-center px-4 py-3 text-base text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                        className="flex items-center px-4 py-3 text-base rounded-lg transition-colors"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 mr-3 text-gray-400"
+                          className="h-5 w-5 mr-3"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -476,12 +483,12 @@ export default function Navbar() {
                       </Link>
                       <Link
                         href="/notes"
-                        className="flex items-center px-4 py-3 text-base text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                        className="flex items-center px-4 py-3 text-base rounded-lg transition-colors"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 mr-3 text-gray-400"
+                          className="h-5 w-5 mr-3"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -497,12 +504,12 @@ export default function Navbar() {
                       </Link>
                       <Link
                         href={`/profile/${user.id}`}
-                        className="flex items-center px-4 py-3 text-base text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                        className="flex items-center px-4 py-3 text-base rounded-lg transition-colors"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 mr-3 text-gray-400"
+                          className="h-5 w-5 mr-3"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -517,11 +524,10 @@ export default function Navbar() {
                         Profile
                       </Link>
                     </div>
-
-                    <div className="pt-6 space-y-4 border-t border-gray-100 mt-4">
+                    <div className="pt-6 space-y-4 border-t border-border-subtle mt-4">
                       <button
                         onClick={handleLogout}
-                        className="flex w-full items-center px-4 py-3 text-base text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        className="flex w-full items-center px-4 py-3 text-base text-red-600 rounded-lg transition-colors"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -554,7 +560,7 @@ export default function Navbar() {
                     <Link
                       href="/sign-in"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center justify-center w-full py-3 px-4 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                      className="flex items-center justify-center w-full py-3 px-4 border border-border text-foreground rounded-lg font-medium hover:bg-primary/10 transition-colors"
                     >
                       Sign In
                     </Link>

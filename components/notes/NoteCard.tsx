@@ -20,15 +20,14 @@ export default function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
   
   const getCardColor = () => {
     const colors = [
-      'from-blue-50 to-blue-100 border-blue-200',
-      'from-green-50 to-green-100 border-green-200',
-      'from-purple-50 to-purple-100 border-purple-200',
-      'from-pink-50 to-pink-100 border-pink-200',
-      'from-yellow-50 to-yellow-100 border-yellow-200',
-      'from-indigo-50 to-indigo-100 border-indigo-200',
-      'from-red-50 to-red-100 border-red-200',
-      'from-orange-50 to-orange-100 border-orange-200',
-      'from-teal-50 to-teal-100 border-teal-200',
+      'bg-card-1 border-purple-200/60 dark:border-purple-500/20 shadow-lg shadow-purple-100/40 dark:shadow-purple-900/30', 
+      'bg-card-2 border-teal-200/60 dark:border-teal-500/20 shadow-lg shadow-teal-100/40 dark:shadow-teal-900/30', 
+      'bg-card-3 border-blue-200/60 dark:border-blue-500/20 shadow-lg shadow-blue-100/40 dark:shadow-blue-900/30', 
+      'bg-card-4 border-indigo-200/60 dark:border-indigo-500/20 shadow-lg shadow-indigo-100/40 dark:shadow-indigo-900/30', 
+      'bg-card-5 border-sky-200/60 dark:border-sky-500/20 shadow-lg shadow-sky-100/40 dark:shadow-sky-900/30', 
+      'bg-card-6 border-violet-200/60 dark:border-violet-500/20 shadow-lg shadow-violet-100/40 dark:shadow-violet-900/30', 
+      'bg-card-7 border-emerald-200/60 dark:border-emerald-500/20 shadow-lg shadow-emerald-100/40 dark:shadow-emerald-900/30', 
+      'bg-card-8 border-red-200/60 dark:border-red-500/20 shadow-lg shadow-red-100/40 dark:shadow-red-900/30', 
     ];
     
     const charCode = note.title.charCodeAt(0) || 0;
@@ -48,27 +47,34 @@ export default function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
   return (
     <motion.div 
       variants={item}
-      className={`relative h-64 rounded-xl shadow-sm bg-gradient-to-br ${getCardColor()} border overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col`}
-      whileHover={{ y: -4 }}
+      className={`relative h-64 rounded-2xl border-2 overflow-hidden backdrop-blur-sm transition-all duration-300 flex flex-col group ${getCardColor()}`}
+      whileHover={{ 
+        y: -6, 
+        scale: 1.02,
+        transition: { duration: 0.2, ease: "easeOut" }
+      }}
+      style={{
+        boxShadow: "0 4px 20px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.1)"
+      }}
     >
-      <div className="p-5 flex-grow overflow-hidden">
-        <h3 className="font-bold text-lg text-gray-800 mb-2 line-clamp-1 break-all">{note.title}</h3>
-        <p className="text-gray-700 line-clamp-5 break-all">{note.content}</p>
+      <div className="p-6 flex-grow overflow-hidden">
+        <h3 className="font-bold text-xl text-foreground mb-3 line-clamp-2 break-all leading-tight">{note.title}</h3>
+        <p className="text-foreground/70 dark:text-foreground/60 line-clamp-4 break-all leading-relaxed text-sm">{note.content}</p>
       </div>
       
-      <div className="px-5 py-3 bg-white bg-opacity-60 backdrop-blur-sm border-t flex justify-between items-center">
-        <span className="text-xs text-gray-500 font-medium">
+      <div className="px-6 py-4 bg-white/40 dark:bg-black/20 backdrop-blur-md border-t border-white/20 dark:border-white/10 flex justify-between items-center">
+        <span className="text-xs text-foreground/60 dark:text-foreground/50 font-medium tracking-wide">
           {formatTimeAgo(note.created_at)}
         </span>
         
-        <div className="space-x-1">
+        <div className="flex space-x-2">
           {isConfirmingDelete ? (
             <>
               <motion.button 
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 onClick={() => onDelete()}
-                className="px-2 py-1 bg-red-600 text-white text-xs rounded"
+                className="px-3 py-1.5 bg-red-500 text-white text-xs font-medium rounded-lg hover:bg-red-600 transition-all duration-200 shadow-sm"
               >
                 Confirm
               </motion.button>
@@ -76,7 +82,7 @@ export default function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 onClick={() => setIsConfirmingDelete(false)}
-                className="px-2 py-1 bg-gray-400 text-white text-xs rounded"
+                className="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 shadow-sm"
               >
                 Cancel
               </motion.button>
@@ -87,7 +93,7 @@ export default function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onEdit}
-                className="p-1.5 rounded-full bg-black/10 hover:bg-gray-300 text-gray-700 transition-colors"
+                className="p-2 rounded-xl bg-white/60 dark:bg-black/40 hover:bg-white/80 dark:hover:bg-black/60 text-foreground/70 hover:text-foreground transition-all duration-200 shadow-sm backdrop-blur-sm border border-white/20 dark:border-white/10"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -97,7 +103,7 @@ export default function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsConfirmingDelete(true)}
-                className="p-1.5 rounded-full bg-red-200 hover:bg-red-600 text-gray-700 hover:text-gray-100 transition-colors"
+                className="p-2 rounded-xl bg-red-50/80 dark:bg-red-900/30 hover:bg-red-100 dark:hover:bg-red-900/50 text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-all duration-200 shadow-sm backdrop-blur-sm border border-red-200/30 dark:border-red-800/30"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

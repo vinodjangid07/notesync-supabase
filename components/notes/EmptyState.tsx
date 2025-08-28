@@ -11,17 +11,17 @@ export default function EmptyState({ onCreateNote }: EmptyStateProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="flex flex-col items-center justify-center p-12 mt-12 text-center bg-white rounded-xl shadow-sm border border-dashed border-gray-300"
+      className="flex flex-col items-center justify-center p-12 mt-12 text-center bg-background rounded-xl shadow-sm border border-border"
     >
-      <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="w-24 h-24 bg-background border border-border rounded-full flex items-center justify-center mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-gray-800 dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
       </div>
       
-      <h3 className="text-xl font-semibold text-gray-800 mb-2">No Notes Yet</h3>
+      <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">No Notes Yet</h3>
       
-      <p className="text-gray-600 mb-8 max-w-md">
+      <p className="text-gray-700 dark:text-gray-300 mb-8 max-w-md">
         You haven&apos;t created any notes yet. Start by creating your first note to keep track of your ideas, tasks, or memories.
       </p>
       

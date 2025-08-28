@@ -45,9 +45,9 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-background min-h-screen">
       {/* Hero Section */}
-      <header className="relative overflow-hidden bg-gray-50 py-16 sm:py-24">
+      <header className="relative overflow-hidden bg-background py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
             {/* Hero Content */}
@@ -57,11 +57,11 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="max-w-xl"
             >
-              <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl mb-6">
+              <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl mb-6">
                 <span className="block">Capture your ideas,</span>{' '}
-                <span className="block text-purple-600">anytime, anywhere.</span>
+                <span className="block text-primary-600">anytime, anywhere.</span>
               </h1>
-              <p className="mt-4 text-lg text-gray-600">
+              <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
                 NoteSync helps you organize your thoughts, save important information, and keep track of your tasks in one beautiful place. Access your notes from any device, anytime.
               </p>
               <div className="mt-10 flex space-x-0 md:space-x-4 flex-col md:flex-row">
@@ -71,7 +71,7 @@ export default function Home() {
                 >
                   <Link 
                     href={user ? "/notes" : "/sign-up"}
-                    className="px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 shadow-md"
+                    className="px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-secondary-600 shadow-md"
                   >
                     {user ? "View My Notes" : "Get Started Free"}
                   </Link>
@@ -83,7 +83,7 @@ export default function Home() {
                 >
                   <a 
                     href="#features" 
-                    className="px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 shadow-sm"
+                    className="px-6 py-3 border border-border text-base font-medium rounded-md hover:bg-gray-50 shadow-sm"
                   >
                     Learn More
                   </a>
@@ -126,10 +126,10 @@ export default function Home() {
             className="text-center max-w-3xl mx-auto"
           >
             <span className="text-sm font-semibold uppercase tracking-wider text-purple-600">Features</span>
-            <h2 className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
+            <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
               Everything you need for your notes
             </h2>
-            <p className="mt-4 text-xl text-gray-500">
+            <p className="mt-4 text-xl text-gray-700 dark:text-gray-300">
               Organize, collaborate, and access your notes from anywhere.
             </p>
           </motion.div>
@@ -189,7 +189,7 @@ export default function Home() {
       </section>
 
       {/* App Screenshot Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -199,10 +199,10 @@ export default function Home() {
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <span className="text-sm font-semibold uppercase tracking-wider text-purple-600">Beautiful Design</span>
-            <h2 className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
+            <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
               A great experience on any device
             </h2>
-            <p className="mt-4 text-xl text-gray-500">
+            <p className="mt-4 text-xl text-gray-700 dark:text-gray-300">
               NoteSync&apos;s clean interface makes taking notes a pleasure, whether you&apos;re on desktop or mobile.
             </p>
           </motion.div>
