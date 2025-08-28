@@ -6,7 +6,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-b from-white to-gray-50 border-t border-gray-200">
+    <footer className="bg-background border-t border-border">
       <div className="max-w-7xl mx-auto py-12 px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand Column */}
@@ -15,7 +15,7 @@ export default function Footer() {
               <div className="w-10 h-10 rounded-lg flex items-center justify-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-purple-600"
+                  className="h-6 w-6 text-primary"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -30,7 +30,7 @@ export default function Footer() {
               </div>
               <h3 className="text-xl font-bold">NoteSync</h3>
             </div>
-            <p className="mt-4 text-sm text-gray-500 leading-relaxed">
+            <p className="mt-4 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
               Your all-in-one solution for secure note-taking and organization.
               Powered by Supabase for seamless cloud synchronization.
             </p>
@@ -38,14 +38,14 @@ export default function Footer() {
 
           {/* Links Column */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">
+            <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200 tracking-wider uppercase">
               Resources
             </h3>
             <ul className="mt-4 space-y-3">
               <li>
                 <Link
                   href="/"
-                  className="text-base text-gray-600 hover:text-purple-600 transition-colors"
+                  className="text-base text-gray-700 dark:text-gray-300 hover:text-purple-600 transition-colors"
                 >
                   Home
                 </Link>
@@ -53,7 +53,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/notes"
-                  className="text-base text-gray-600 hover:text-purple-600 transition-colors"
+                  className="text-base text-gray-700 dark:text-gray-300 hover:text-purple-600 transition-colors"
                 >
                   Create Notes
                 </Link>
@@ -61,7 +61,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/policy"
-                  className="text-base text-gray-600 hover:text-purple-600 transition-colors"
+                  className="text-base text-gray-700 dark:text-gray-300 hover:text-purple-600 transition-colors"
                 >
                   Privacy Policy
                 </Link>
@@ -71,7 +71,7 @@ export default function Footer() {
 
           {/* Social Column */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">
+            <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200 tracking-wider uppercase">
               Connect with Us
             </h3>
             <div className="mt-4 flex space-x-5">
@@ -79,7 +79,7 @@ export default function Footer() {
                 href="https://github.com/vinodjangid07"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-gray-800"
+                className="text-gray-700 dark:text-gray-300"
                 whileHover={{ scale: 1.1, y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -101,7 +101,7 @@ export default function Footer() {
                 href="https://www.instagram.com/pexel_ui/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-pink-600"
+                className="text-gray-700 dark:text-gray-300 hover:text-pink-600"
                 whileHover={{ scale: 1.1, y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -121,7 +121,7 @@ export default function Footer() {
               </motion.a>
               <motion.a
                 href="mailto:infovinodjangid@gmail.com"
-                className="text-gray-500 hover:text-blue-600"
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-600"
                 whileHover={{ scale: 1.1, y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -144,14 +144,14 @@ export default function Footer() {
             </div>
 
             <div className="mt-8">
-              <h3 className="text-sm font-semibold text-gray-500">
+              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Never miss an update
               </h3>
               <div className="mt-3 sm:flex">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full px-4 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                  className="bg-background w-full px-4 py-2 text-sm border border-border rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                 />
                 <button className="mt-2 sm:mt-0 sm:ml-2 w-full sm:w-auto bg-gradient-to-r from-purple-600 to-purple-600 text-white px-4 py-2 rounded-md font-medium hover:shadow-md transition-all duration-200">
                   Subscribe
@@ -161,19 +161,19 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-gray-200 pt-8">
+        <div className="mt-12 border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-            <p className="text-base text-gray-500">
+            <p className="text-base text-gray-600 dark:text-gray-400">
               &copy; {currentYear} NoteSync. All rights reserved.
             </p>
 
             <div className="mt-4 md:mt-0 flex items-center">
-              <span className="text-sm text-gray-500">Designed & built by</span>
+              <span className="text-sm text-gray-600 dark:text-gray-400">Designed & built by</span>
               <motion.a
                 href="https://github.com/vinodjangid07"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-1.5 text-sm font-medium text-purple-600 hover:text-purple-500 flex items-center"
+                className="ml-1.5 text-sm font-medium text-primary hover:text-purple-500 flex items-center"
                 whileHover={{ scale: 1.05 }}
               >
                 vinodjangid07

@@ -41,7 +41,7 @@ export default function SignUpPage() {
     }
     
     return (
-        <div className="min-h-[89vh] flex flex-col items-center justify-center bg-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-[89vh] flex flex-col items-center justify-center bg-background py-12 px-4 sm:px-6 lg:px-8">
             <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -53,17 +53,17 @@ export default function SignUpPage() {
                     <motion.div
                         whileHover={{ rotate: 10 }}
                         transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                        className="bg-purple-600 w-14 h-14 rounded-xl shadow-md flex items-center justify-center"
+                        className="bg-primary w-14 h-14 rounded-xl shadow-md flex items-center justify-center"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                         </svg>
                     </motion.div>
                     
-                    <h2 className="mt-4 text-center text-3xl font-bold text-gray-900">
+                    <h2 className="mt-4 text-center text-3xl font-bold text-foreground">
                         Create an account
                     </h2>
-                    <p className="mt-2 text-center text-sm text-gray-600">
+                    <p className="mt-2 text-center text-sm text-foreground/70">
                         Join NoteSync and start capturing your ideas
                     </p>
                 </div>
@@ -71,7 +71,7 @@ export default function SignUpPage() {
                 <form className="mt-8 space-y-6" onSubmit={handleSignUp}>
                     <div className="space-y-4">
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                            <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1">
                                 Email address
                             </label>
                             <input
@@ -79,14 +79,14 @@ export default function SignUpPage() {
                                 name="email"
                                 type="email"
                                 required
-                                className="appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
+                                className="appearance-none relative block w-full px-3 py-3 border border-border bg-background placeholder-foreground/50 text-foreground rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-all duration-200"
                                 placeholder="you@example.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div>
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                            <label htmlFor="password" className="block text-sm font-medium text-foreground mb-1">
                                 Password
                             </label>
                             <input
@@ -94,14 +94,14 @@ export default function SignUpPage() {
                                 name="password"
                                 type="password"
                                 required
-                                className="appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
+                                className="appearance-none relative block w-full px-3 py-3 border border-border bg-background placeholder-foreground/50 text-foreground rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-all duration-200"
                                 placeholder="••••••••"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
                         <div>
-                            <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700 mb-1">
+                            <label htmlFor="confirm-password" className="block text-sm font-medium text-foreground mb-1">
                                 Confirm Password
                             </label>
                             <input
@@ -109,7 +109,7 @@ export default function SignUpPage() {
                                 name="confirm-password"
                                 type="password"
                                 required
-                                className="appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
+                                className="appearance-none relative block w-full px-3 py-3 border border-border bg-background placeholder-foreground/50 text-foreground rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm transition-all duration-200"
                                 placeholder="••••••••"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
@@ -122,7 +122,7 @@ export default function SignUpPage() {
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="bg-red-50 text-red-600 p-3 rounded-lg text-sm"
+                            className="bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 p-3 rounded-lg text-sm border border-red-200 dark:border-red-800"
                         >
                             {error}
                         </motion.div>
@@ -134,7 +134,7 @@ export default function SignUpPage() {
                             whileTap={{ scale: 0.98 }}
                             type="submit"
                             disabled={loading}
-                            className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 shadow-sm transition-all duration-200 disabled:opacity-70"
+                            className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-sm transition-all duration-200 disabled:opacity-70"
                         >
                             {loading ? (
                                 <span className="flex items-center">
@@ -150,7 +150,7 @@ export default function SignUpPage() {
                     
                     <div className="flex items-center justify-center">
                         <div className="text-sm">
-                            <Link href="/sign-in" className="font-medium text-purple-600 hover:text-purple-500 transition-colors">
+                            <Link href="/sign-in" className="font-medium text-primary hover:text-primary/80 transition-colors">
                                 Already have an account? Sign in
                             </Link>
                         </div>
@@ -158,13 +158,13 @@ export default function SignUpPage() {
                 </form>
             </motion.div>
 
-            <p className="mt-6 text-center text-sm text-gray-500">
+            <p className="mt-6 text-center text-sm text-foreground/60">
                 By signing up, you agree to our{' '}
-                <Link href="/terms" className="text-purple-600 hover:text-purple-500">
+                <Link href="/terms" className="text-primary hover:text-primary/80 transition-colors">
                     Terms of Service
                 </Link>{' '}
                 and{' '}
-                <Link href="/privacy" className="text-purple-600 hover:text-purple-500">
+                <Link href="/privacy" className="text-primary hover:text-primary/80 transition-colors">
                     Privacy Policy
                 </Link>
             </p>

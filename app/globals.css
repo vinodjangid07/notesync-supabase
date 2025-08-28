@@ -22,13 +22,90 @@
   -webkit-tap-highlight-color: #9233ea18;
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer base {
+  :root {
+    /* Primary colors - Purple theme */
+    --primary-50: #faf5ff;
+    --primary-100: #f3e8ff;
+    --primary-200: #e9d5ff;
+    --primary-300: #d8b4fe;
+    --primary-400: #c084fc;
+    --primary-500: #a855f7;
+    --primary-600: #9333ea;
+    --primary-700: #7c3aed;
+    --primary-800: #6b21a8;
+    --primary-900: #581c87;
+    --primary-950: #3b0764;
+
+    /* Secondary colors - Teal theme */
+    --secondary-50: #f0fdfa;
+    --secondary-100: #ccfbf1;
+    --secondary-200: #99f6e4;
+    --secondary-300: #5eead4;
+    --secondary-400: #2dd4bf;
+    --secondary-500: #14b8a6;
+    --secondary-600: #0d9488;
+    --secondary-700: #0f766e;
+    --secondary-800: #115e59;
+    --secondary-900: #134e4a;
+    --secondary-950: #042f2e;
+
+    /* Light theme variables */
+    --background: #ffffff;
+    --foreground: #0f172a;
+    --primary: var(--primary-600);
+    --primary-foreground: #ffffff;
+    --secondary: var(--secondary-600);
+    --secondary-foreground: #ffffff;
+    
+    /* Luxurious border colors for light mode */
+    --border: #e2e8f0;
+    --border-subtle: #f1f5f9;
+    --border-accent: var(--primary-200);
+    --border-secondary: var(--secondary-200);
+    
+    /* Luxurious card backgrounds for light mode - minimal and elegant */
+    --card-bg-1: linear-gradient(135deg, #fefbff 0%, #f8f4ff 100%);
+    --card-bg-2: linear-gradient(135deg, #f0fdfa 0%, #ecfdf5 100%);
+    --card-bg-3: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    --card-bg-4: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+    --card-bg-5: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    --card-bg-6: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+    --card-bg-7: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    --card-bg-8: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  }
+  
+  .dark {
+    /* Dark theme variables */
+    --background: #000000;
+    --foreground: #f8fafc;
+    --primary: var(--primary-500);
+    --primary-foreground: #ffffff;
+    --secondary: var(--secondary-500);
+    --secondary-foreground: #ffffff;
+    
+    /* Luxurious border colors for dark mode */
+    --border: #1e293b;
+    --border-subtle: #0f172a;
+    --border-accent: var(--primary-800);
+    --border-secondary: var(--secondary-800);
+    
+    /* Luxurious card backgrounds for dark mode - elegant colors that complement black */
+    --card-bg-1: linear-gradient(135deg, #1a0d33 0%, #2d1b4e 100%); /* Deep royal purple */
+    --card-bg-2: linear-gradient(135deg, #0a2f2a 0%, #134e4a 100%); /* Deep emerald teal */
+    --card-bg-3: linear-gradient(135deg, #0c1e3d 0%, #1e3a8a 100%); /* Deep sapphire blue */
+    --card-bg-4: linear-gradient(135deg, #1e1065 0%, #4338ca 100%); /* Rich indigo */
+    --card-bg-5: linear-gradient(135deg, #0c4a6e 0%, #0284c7 100%); /* Ocean blue */
+    --card-bg-6: linear-gradient(135deg, #581c87 0%, #7c3aed 100%); /* Luxurious violet */
+    --card-bg-7: linear-gradient(135deg, #14532d 0%, #059669 100%); /* Forest emerald */
+    --card-bg-8: linear-gradient(135deg, #7f1d1d 0%, #dc2626 100%); /* Rich crimson */
+  }
 }
 
+
+
 body {
+  background-color: var(--background);
   color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }

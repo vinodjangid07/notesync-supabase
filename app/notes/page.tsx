@@ -128,7 +128,7 @@ export default function NotesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -137,8 +137,8 @@ export default function NotesPage() {
           className="flex flex-col md:flex-row justify-between mb-8 items-center"
         >
           <div>
-            <h1 className="text-3xl font-bold text-gray-800">Your Notes</h1>
-            <p className="text-gray-600 mt-1">
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">Your Notes</h1>
+            <p className="text-gray-700 dark:text-gray-300 mt-1">
               {notes.length} {notes.length === 1 ? 'note' : 'notes'} available
             </p>
           </div>
@@ -198,12 +198,12 @@ export default function NotesPage() {
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="bg-white rounded-xl shadow-md overflow-hidden h-64 animate-pulse">
+              <div key={i} className="bg-background border border-border rounded-xl overflow-hidden h-64 animate-pulse">
                 <div className="p-5">
-                  <div className="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
-                  <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
-                  <div className="h-4 bg-gray-200 rounded w-5/6 mb-2"></div>
-                  <div className="h-4 bg-gray-200 rounded w-4/6"></div>
+                  <div className="h-6 bg-gray-200 dark:bg-gray-800 rounded w-3/4 mb-4"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-full mb-2"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-5/6 mb-2"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-4/6"></div>
                 </div>
               </div>
             ))}
